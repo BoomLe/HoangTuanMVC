@@ -1,0 +1,23 @@
+@model App.Models.ProductModel
+@{
+    var product = ViewData["product"] as ProductModel;
+}
+
+<p>@ViewData["Title"]</p>
+<div class="card" style="background-color: rgb(82, 106, 225); margin: 30px; padding: 30px">
+<form>
+    <div class="card-header">
+        <h1>tên sản phẩm : @product.Name <br>
+            Giá : @product.Price !</h1>
+    </div>
+    <div class="card-body">
+           <h1>
+
+    Xin chào tôi là View của Product
+</h1>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</form>
+</div>
