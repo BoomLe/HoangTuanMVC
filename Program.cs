@@ -1,8 +1,16 @@
+using App.Models;
 using App.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+//ADd Database DBcontext:
+builder.Services.AddDbContext<HoangTuanDB>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HoangTuanDB"));
+});
 //ADD phương thúc tìm đường dẫn File và thư mục theo ý:
 builder.Services.Configure<RazorViewEngineOptions>(option =>
 {
