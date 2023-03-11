@@ -6,6 +6,7 @@ namespace App.Models
 {
     public class HoangTuanDB : DbContext
     {
+        public DbSet<ContactModel> ContactModels{set;get;}
         public HoangTuanDB(DbContextOptions<HoangTuanDB> options) : base(options)
         {
             // this. role

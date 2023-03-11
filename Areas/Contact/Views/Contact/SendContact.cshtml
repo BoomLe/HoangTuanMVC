@@ -1,0 +1,57 @@
+@model App.Models.ContactModel
+
+@{
+    ViewData["Title"] = "Đóng góp ý kiến";
+}
+
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        
+        <div class="cantact-one p-2 h-100">
+            <img class="contact-three" src="~/File/email.png">
+              <h1>@ViewData["Title"]</h1>
+        <h5>Cảm ơn bạn đã chia sẽ ý kiến !</h4>
+        </div>
+      
+    </div>
+    <div class="col-md-8">
+        <form class="contact-two" asp-action="SendContact">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group  mb-3">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group  mb-3">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group  mb-3">
+                <label asp-for="DateSend" class="control-label"></label>
+                <input asp-for="DateSend" class="form-control" />
+                <span asp-validation-for="DateSend" class="text-danger"></span>
+            </div>
+        
+            <div class="form-group  mb-3">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group  mb-3">
+                <label asp-for="message" class="control-label"></label>
+                <textarea rows="5" asp-for="message" class="form-control" ></textarea> 
+                <span asp-validation-for="message" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3" >
+                <input type="submit" value="Gửi" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+

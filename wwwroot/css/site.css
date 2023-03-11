@@ -1,3 +1,8 @@
+body {
+  background: #efefef;
+  color: aqua;
+}
+
 html {
   font-size: 14px;
 }
@@ -7,7 +12,6 @@ html {
     font-size: 16px;
   }
 }
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -19,4 +23,46 @@ html {
 
 body {
   margin-bottom: 60px;
+}
+
+.app-navbar {
+  background: #258cfb;
+}
+.app-navbar .text-dark {
+  color: rgb(186, 18, 93) !important;
+}
+.app-navbar .text-dark:hover {
+  color: #d121d4 !important;
+}
+
+.navbar-brand {
+  color: rgb(18, 197, 87) !important;
+}
+.navbar-brand:hover {
+  color: #68056a !important;
+}
+
+.dropdown-toggle {
+  border-color: #2fedc1;
+  color: #e612bf;
+}
+
+.cantact-one {
+  background-color: rgb(83, 25, 184);
+  text-align: center;
+  border-radius: 15px;
+}
+
+h5 {
+  line-height: 40px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.contact-two {
+  font-weight: 700;
+}
+
+.contact-three {
+  max-width: 70;
 }
