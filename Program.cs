@@ -1,11 +1,17 @@
+using System.ComponentModel.Design.Serialization;
 using App.Models;
 using App.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using App.ExtendMethods;
+using App.ExtenMethod;
+using App.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
 
 
 //ADd Database DBcontext:
@@ -29,12 +35,24 @@ builder.Services.Configure<RazorViewEngineOptions>(option =>
        option.ViewLocationFormats.Add("/MyViews/{1}/{0}.cshtml");
 });
 
-//ADdd Identity
+//Add ẩn menu
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminManager", builders=>{
+        builders.RequireAuthenticatedUser();
+        builders.RequireRole(RoleName.Administrator);
+    });
+});
 
-builder.Services.AddIdentity<HoangTuanDB, IdentityRole>()
+// builder.Services.AddEntityFrameworkSqlServer();
+
+builder.Services.AddDefaultIdentity<MyHoangTuan>(options => options.SignIn.RequireConfirmedAccount = true)
+.AddRoles<IdentityRole>()
 .AddEntityFrameworkStores<HoangTuanDB>()
 .AddDefaultTokenProviders();
-//
+
+
+
 
 //Add Thư viện cho Login-Out
 // Truy cập IdentityOptions
@@ -67,15 +85,15 @@ builder.Services.Configure<IdentityOptions> (options => {
 // builder.Configuration.GetSection("MailSetting");
 // builder.Services.Configure<MailSettings>((builder.Configuration.GetSection("MailSetting")));
 
-// builder.Services.AddSingleton<IEmailSender, SendMailService>();
-// builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
+builder.Services.AddSingleton<IEmailSender, SendMailService>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
 
-// builder.Services.ConfigureApplicationCookie(options =>
-// {
-//     options.LoginPath = "/login/";
-//     options.LogoutPath = "/logout/";
-//     options.AccessDeniedPath = "/Khongtruycap.html";
-// });
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/login/";
+    options.LogoutPath = "/logout/";
+    options.AccessDeniedPath = "/Khongtruycap.html";
+});
 
 // ADD dịch vụ thứ 3 Google
 builder.Services.AddAuthentication().AddGoogle(options =>
@@ -88,7 +106,7 @@ builder.Services.AddAuthentication().AddGoogle(options =>
 
 
 builder.Services.AddSingleton<ProductService>();
-
+builder.Services.AddSingleton<IdentityErrorDescriber ,AppIdentityErrorDescriber>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -104,9 +122,13 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 app.UseCookiePolicy();
+
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.AddErrorfix();
 
 app.UseAuthentication();
 app.UseRouting();

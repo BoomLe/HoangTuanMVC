@@ -1,6 +1,6 @@
 body {
   background: #efefef;
-  color: aqua;
+  color: rgb(10, 123, 80);
 }
 
 html {
@@ -43,7 +43,7 @@ body {
 }
 
 .dropdown-toggle {
-  border-color: #2fedc1;
+  border-color: #ab07a6;
   color: #e612bf;
 }
 

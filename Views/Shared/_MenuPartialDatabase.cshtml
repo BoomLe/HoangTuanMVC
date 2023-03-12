@@ -1,4 +1,12 @@
-<div class="dropdown">
+@using Microsoft.AspNetCore.Authorization
+@inject  IAuthorizationService authorization
+
+@{
+  var ADmins = await authorization.AuthorizeAsync(this.User,"AdminManager");
+}
+@if(ADmins.Succeeded)
+{
+  <div class="dropdown">
     <a class="btn btn-outline-danger dropdown-toggle" href="#" id="manageddropdownmenu" onclick="myclass()" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
                         Manager
                       </a>
@@ -10,9 +18,16 @@
         <a class="btn btn-warning" asp-action="Index" asp-controller="Contact" asp-area="Contact">
             ManagerDB
         </a>
+         <a class="btn btn-warning" asp-action="Index" asp-controller="User" asp-area="Identity">
+            Quản lý User
+        </a>
+         <a class="btn btn-warning" asp-action="Index" asp-controller="Role" asp-area="Identity">
+            Quản lý Admin
+        </a>
     </div>
 
 </div>
+}
 @* code Javascrip thi hành nút bấm dropdown  *@
 @section myclass{
      <script>
