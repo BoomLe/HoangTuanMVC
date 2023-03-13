@@ -1,6 +1,8 @@
 using System.Reflection.Emit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using HoangTuanMVC.Models;
+using App.Models;
 
 namespace App.Models
 {
@@ -20,8 +22,23 @@ namespace App.Models
 
         protected override void OnModelCreating(ModelBuilder moduleBuilder)
         {
+
+             //xóa những từ có tiền tố ASP
+            foreach (var entity in moduleBuilder.Model.GetEntityTypes())
+            {
+                //lưu ý Get và Set => của Table
+                var tableName = entity.GetTableName();
+                if(tableName.StartsWith("AspNet"))
+                {
+                    entity.SetTableName(tableName.Substring(6));
+
+                }
+            }
+            moduleBuilder.ApplyConfiguration(new CategoryConfiguration());
             base.OnModelCreating(moduleBuilder);
         }
+
+        public DbSet<App.Models.Category> Category { get; set; } = default!;
 
     }
     
