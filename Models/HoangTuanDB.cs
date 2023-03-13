@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 using App.Models;
+using HoangTuanMVC.Models.Categorys;
+
 namespace App.Models
 {
     public class HoangTuanDB : IdentityDbContext<MyHoangTuan>
@@ -21,8 +23,8 @@ namespace App.Models
 
         protected override void OnModelCreating(ModelBuilder  moduleBuilder)
         {
-            base.OnModelCreating(moduleBuilder);
 
+            moduleBuilder.ApplyConfiguration(new CategoryConfiguration());
             //xóa những từ có tiền tố ASP
             foreach (var entity in moduleBuilder.Model.GetEntityTypes())
             {
@@ -34,6 +36,8 @@ namespace App.Models
 
                 }
             }
+            base.OnModelCreating(moduleBuilder);
+            
         }
 
     }
