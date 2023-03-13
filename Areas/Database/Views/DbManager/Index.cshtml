@@ -1,0 +1,55 @@
+@using Microsoft.EntityFrameworkCore
+@using System.Data
+@inject App.Models.HoangTuanDB _HoangTuanDB
+@{
+    ViewData["Title"] ="Thông tin Database";
+    var connect = _HoangTuanDB.Database.GetDbConnection();
+    var database = connect.Database;
+    var Cantconect = _HoangTuanDB.Database.CanConnect();
+}
+
+<partial name="_AlertMessage"></partial>
+<h1>Thông Tin Database HoangTuan</h1>
+<p>@database</p>
+<p>@connect.DataSource</p>
+<p>@connect.State</p>
+<hr>
+<h1>Migrations hiện tại :</h1>
+@foreach (var migrations in _HoangTuanDB.Database.GetAppliedMigrations())
+{
+    <p>@migrations</p>
+    
+}
+<hr>
+@foreach (var migrations in _HoangTuanDB.Database.GetPendingMigrations())
+{
+    <p>@migrations (pending)</p>
+    
+}
+
+@if(!Cantconect)
+{
+    <p class="alert alert-danger">Không tìm thấy dữ liệu</p>
+
+}
+@if(_HoangTuanDB.Database.GetPendingMigrations().Any())
+{
+    <form method="post">
+       <button class="btn btn-success" asp-action="Created">Tạo Database Context</button>
+    </form>
+}
+@if(Cantconect)
+{
+    <H2>Table Databse</H2>
+    await _HoangTuanDB.Database.OpenConnectionAsync();
+
+    var table = _HoangTuanDB.Database.GetDbConnection().GetSchema("Tables");
+
+    @foreach (System.Data.DataRow row in table.Rows)
+    {
+        <ul><li>@row["TABLE_NAME"]</li></ul>
+        
+    }
+}
+
+<a class="btn btn-danger W-30"  asp-action="DeleteDb">Xóa </a>

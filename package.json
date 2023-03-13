@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-less": "^5.0.0",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^8.0.0",
+    "postcss": "^8.4.21",
+    "rimraf": "^4.4.0",
+    "sass": "^1.59.2",
+    "upper-case": "^2.0.2"
+  },
+  "name": "hoangtuanmvc",
+  "description": "- là một lớp kế thừa từ controller : Microsoft.AspNet.Mvc.Controller\r - Action trong controller là phương thức public (không được Static)\r -Action trả về bắt cứ giữ liệu nào, thường là IActionResult\r - Các dịch vụ Inject vào Controller qua hàm tạo",
+  "version": "1.0.0",
+  "main": "a",
+  "scripts": {
+    "test": "a"
+  },
+  "repository": {
+    "type": "git",
+    "url": "a"
+  },
+  "keywords": [
+    "a"
+  ],
+  "author": "a",
+  "license": "ISC"
+}

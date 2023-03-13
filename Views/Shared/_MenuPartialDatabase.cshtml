@@ -1,0 +1,27 @@
+<div class="dropdown">
+    <a class="btn btn-outline-danger dropdown-toggle" href="#" id="manageddropdownmenu" onclick="myclass()" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="true">
+                        Manager
+                      </a>
+
+    <div class="dropdown-menu btn btn-warning" aria-labelledby="manageddropdownmenu"y >
+        <a class="btn btn-warning" asp-action="Index" asp-controller="DbManager" asp-area="Database">
+            Database
+        </a>
+        <a class="btn btn-warning" asp-action="Index" asp-controller="Contact" asp-area="Contact">
+            ManagerDB
+        </a>
+    </div>
+
+</div>
+@* code Javascrip thi hành nút bấm dropdown  *@
+@section myclass{
+     <script>
+    let even = 'block';
+  let odd = 'none';
+  let elements = document.getElementsByClassName("dropdown-menu")
+
+  Array.prototype.forEach.call(elements, function(element) {
+    element.style.display === even ? element.style.display = odd : element.style.display = even
+  });</script>
+}
+
